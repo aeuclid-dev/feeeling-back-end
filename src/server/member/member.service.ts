@@ -52,6 +52,15 @@ export class MemberService {
       JoinMemberDto.profile_photo = photoId[0];
     }
 
+    const check_user_id_length = await this.memberRepository.count({
+      user_id: JoinMemberDto.user_id,
+    });
+    console.log(check_user_id_length);
+    if (check_user_id_length > 0) {
+      console.log('exist user_id ');
+      return responseToJson('203');
+    }
+
     try {
       let res = await this.memberRepository.createUser(JoinMemberDto);
       if (res.result) {

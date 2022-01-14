@@ -596,331 +596,326 @@ export default function Index(props) {
       <Head>
         <title>feeelingScoringTestRequestPage</title>
       </Head>
-      <TemplateProvider>
-        <div className={classes.root}>
-          <AppBar>
-            <Toolbar variant="dense" className={classes.toolbar}>
-              <div className={classes.title}>
-                <Typography
-                  component="div"
-                  variant="h6"
-                  color="inherit"
-                  noWrap
-                  className={classes.mr1}
-                >
-                  Aeuclid Logo
-                </Typography>
-                <Avatar className={classes.mr1}></Avatar>
-                <div className={classes.username}>
-                  <Typography
-                    className={classes.title}
-                    component="h1"
-                    variant="h6"
-                    color="inherit"
-                    noWrap
-                  >
-                    {adminName}
-                  </Typography>
-                </div>
-                <div className={classes.titleBarContents}>
-                  <Typography
-                    className={classes.title}
-                    variant="subtitle2"
-                    color="inherit"
-                  >
-                    Current Month
-                  </Typography>
-                  <TextField
-                    disabled
-                    className={classes.textField}
-                    id="filled-correntMonth"
-                    //label="Current Month"
-                    variant="outlined"
-                    value={correntMonth}
-                    InputLabelProps={{
-                      classes: {
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused,
-                      },
-                    }}
-                    InputProps={{
-                      readOnly: true,
-                      classes: {
-                        root: classes.cssOutlinedInput,
-                        focused: classes.cssFocused,
-                        notchedOutline: classes.notchedOutline,
-                      },
+
+      <AppBar>
+        <Toolbar variant="dense" className={classes.toolbar}>
+          <div className={classes.title}>
+            <Typography
+              component="div"
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.mr1}
+            >
+              Aeuclid Logo
+            </Typography>
+            <Avatar className={classes.mr1}></Avatar>
+            <div className={classes.username}>
+              <Typography
+                className={classes.title}
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+              >
+                {adminName}
+              </Typography>
+            </div>
+            <div className={classes.titleBarContents}>
+              <Typography
+                className={classes.title}
+                variant="subtitle2"
+                color="inherit"
+              >
+                Current Month
+              </Typography>
+              <TextField
+                disabled
+                className={classes.textField}
+                id="filled-correntMonth"
+                //label="Current Month"
+                variant="outlined"
+                value={correntMonth}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused,
+                  },
+                }}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    root: classes.cssOutlinedInput,
+                    focused: classes.cssFocused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
+            </div>
+            <div className={classes.titleBarContents}>
+              <Typography
+                className={classes.title}
+                variant="subtitle2"
+                color="inherit"
+              >
+                Today
+              </Typography>
+              <TextField
+                disabled
+                id="filled-today"
+                //label="Today"
+                variant="outlined"
+                value={today}
+                className={classes.textField}
+                // InputLabelProps={{
+                //   classes: {
+                //     root: classes.cssLabel,
+                //     focused: classes.cssFocused,
+                //   },
+                // }}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    root: classes.cssOutlinedInput,
+                    focused: classes.cssFocused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
+            </div>
+            <div className={classes.titleBarContents}>
+              <TextField
+                disabled
+                id="filled-watingRequest"
+                //label="watingRequest"
+                variant="outlined"
+                value={watingRequest}
+                className={classes.textField}
+                // InputLabelProps={{
+                //   classes: {
+                //     root: classes.cssLabel,
+                //     focused: classes.cssFocused,
+                //   },
+                // }}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    root: classes.cssOutlinedInput,
+                    focused: classes.cssFocused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
+              <Button
+                type="button"
+                variant="contained"
+                color="secondary"
+                disabled={isLoaded}
+                onClick={getRequest}
+              >
+                New
+              </Button>
+            </div>
+          </div>
+          <div className={classes.titleBarBtnDiv}>
+            <Button
+              type="button"
+              variant="contained"
+              color="secondary"
+              disabled={!isLoaded}
+              onClick={setReject}
+            >
+              Reject
+            </Button>
+            <Button
+              type="button"
+              variant="contained"
+              color="secondary"
+              disabled={!isLoaded}
+              onClick={handleClickDone}
+            >
+              Done
+            </Button>
+          </div>
+        </Toolbar>
+      </AppBar>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        {isLoaded ? (
+          <Container maxWidth={true} className={classes.container}>
+            <div className={classes.mainContainer}>
+              <Paper elevation={3} className={classes.paperContents1}>
+                {testRequestImage !== '' ? (
+                  <img
+                    style={{ maxWidth: 800 }}
+                    src={'data:image/png;base64, ' + testRequestImage}
+                    alt="testimage"
+                    onLoad={(e) => {
+                      console.log('onloaded!');
                     }}
                   />
-                </div>
-                <div className={classes.titleBarContents}>
-                  <Typography
-                    className={classes.title}
-                    variant="subtitle2"
-                    color="inherit"
-                  >
-                    Today
-                  </Typography>
-                  <TextField
-                    disabled
-                    id="filled-today"
-                    //label="Today"
-                    variant="outlined"
-                    value={today}
-                    className={classes.textField}
-                    // InputLabelProps={{
-                    //   classes: {
-                    //     root: classes.cssLabel,
-                    //     focused: classes.cssFocused,
-                    //   },
-                    // }}
-                    InputProps={{
-                      readOnly: true,
-                      classes: {
-                        root: classes.cssOutlinedInput,
-                        focused: classes.cssFocused,
-                        notchedOutline: classes.notchedOutline,
-                      },
-                    }}
-                  />
-                </div>
-                <div className={classes.titleBarContents}>
-                  <TextField
-                    disabled
-                    id="filled-watingRequest"
-                    //label="watingRequest"
-                    variant="outlined"
-                    value={watingRequest}
-                    className={classes.textField}
-                    // InputLabelProps={{
-                    //   classes: {
-                    //     root: classes.cssLabel,
-                    //     focused: classes.cssFocused,
-                    //   },
-                    // }}
-                    InputProps={{
-                      readOnly: true,
-                      classes: {
-                        root: classes.cssOutlinedInput,
-                        focused: classes.cssFocused,
-                        notchedOutline: classes.notchedOutline,
-                      },
-                    }}
-                  />
-                  <Button
-                    type="button"
-                    variant="contained"
-                    color="secondary"
-                    disabled={isLoaded}
-                    onClick={getRequest}
-                  >
-                    New
-                  </Button>
-                </div>
-              </div>
-              <div className={classes.titleBarBtnDiv}>
-                <Button
-                  type="button"
-                  variant="contained"
-                  color="secondary"
-                  disabled={!isLoaded}
-                  onClick={setReject}
-                >
-                  Reject
-                </Button>
-                <Button
-                  type="button"
-                  variant="contained"
-                  color="secondary"
-                  disabled={!isLoaded}
-                  onClick={handleClickDone}
-                >
-                  Done
-                </Button>
-              </div>
-            </Toolbar>
-          </AppBar>
-          <main className={classes.content}>
-            <div className={classes.appBarSpacer} />
-            {isLoaded ? (
-              <Container maxWidth={true} className={classes.container}>
-                <div className={classes.mainContainer}>
-                  <Paper elevation={3} className={classes.paperContents1}>
-                    {testRequestImage !== '' ? (
-                      <img
-                        style={{ maxWidth: 800 }}
-                        src={'data:image/png;base64, ' + testRequestImage}
-                        alt="testimage"
-                        onLoad={(e) => {
-                          console.log('onloaded!');
-                        }}
-                      />
-                    ) : (
-                      <pre>
-                        <code>{JSON.stringify(requestData, null, 4)}</code>
-                      </pre>
-                    )}
-                  </Paper>
-                  <Paper elevation={3} className={classes.paperContents2}>
-                    {isQuestionLoaded ? (
-                      <TabContext value={`${tabValue}`}>
-                        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                          <TabList onChange={handleChange}>
-                            {questionCategory.map((data, index) => {
-                              return (
-                                <Tab
-                                  key={index}
-                                  label={data}
-                                  value={`${index + 1}`}
-                                />
-                              );
-                            })}
-                          </TabList>
-                        </Box>
-                        {Object.entries(questionScoreByCategory).map(
-                          (objectArr, index) => {
-                            const data: any = objectArr[1]; //0:key 1:object
-                            return (
-                              <TabPanel
-                                key={index}
-                                value={`${index + 1}`}
-                                className={classes.rightQuestionPannel}
+                ) : (
+                  <pre>
+                    <code>{JSON.stringify(requestData, null, 4)}</code>
+                  </pre>
+                )}
+              </Paper>
+              <Paper elevation={3} className={classes.paperContents2}>
+                {isQuestionLoaded ? (
+                  <TabContext value={`${tabValue}`}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                      <TabList onChange={handleChange}>
+                        {questionCategory.map((data, index) => {
+                          return (
+                            <Tab
+                              key={index}
+                              label={data}
+                              value={`${index + 1}`}
+                            />
+                          );
+                        })}
+                      </TabList>
+                    </Box>
+                    {Object.entries(questionScoreByCategory).map(
+                      (objectArr, index) => {
+                        const data: any = objectArr[1]; //0:key 1:object
+                        return (
+                          <TabPanel
+                            key={index}
+                            value={`${index + 1}`}
+                            className={classes.rightQuestionPannel}
+                          >
+                            {questionData
+                              .filter(
+                                (questionDataObj) =>
+                                  questionDataObj.categoryId ===
+                                  data.categoryId,
+                              )
+                              .map(
+                                (
+                                  sameCategoryData: questionScoreDataType,
+                                  scdindex,
+                                ) => {
+                                  return (
+                                    <Questions
+                                      key={data.categoryId + '' + scdindex}
+                                      data={sameCategoryData}
+                                      onClick={handleScoreSelected}
+                                      validata={notVaildateQuestions}
+                                    />
+                                  );
+                                },
+                              )}
+                            <div
+                              className={classes.rightQuestionBottomScoreDiv}
+                            >
+                              <div
+                                className={
+                                  classes.rightQuestionBottomScoreContents
+                                }
                               >
-                                {questionData
-                                  .filter(
-                                    (questionDataObj) =>
-                                      questionDataObj.categoryId ===
-                                      data.categoryId,
-                                  )
-                                  .map(
-                                    (
-                                      sameCategoryData: questionScoreDataType,
-                                      scdindex,
-                                    ) => {
-                                      return (
-                                        <Questions
-                                          key={data.categoryId + '' + scdindex}
-                                          data={sameCategoryData}
-                                          onClick={handleScoreSelected}
-                                          validata={notVaildateQuestions}
-                                        />
-                                      );
-                                    },
-                                  )}
-                                <div
-                                  className={
-                                    classes.rightQuestionBottomScoreDiv
-                                  }
-                                >
-                                  <div
-                                    className={
-                                      classes.rightQuestionBottomScoreContents
-                                    }
-                                  >
-                                    <span>Checked Score</span>
-                                    <TextField
-                                      id={data.categoryId + 'CheckedScore'}
-                                      variant="outlined"
-                                      size="small"
-                                      value={data.checkedScore}
-                                      InputProps={{
-                                        readOnly: true,
-                                      }}
-                                    />
-                                  </div>
-                                  <div
-                                    className={
-                                      classes.rightQuestionBottomScoreContents
-                                    }
-                                  >
-                                    <span>Tester Adjust</span>
-                                    <TextField
-                                      id={data.categoryId + 'TesterAdjust'}
-                                      variant="outlined"
-                                      size="small"
-                                      value={data.testerAdjust}
-                                      name={data.categoryId}
-                                      onChange={handleTesterAdjustChange}
-                                    />
-                                  </div>
-                                  <div
-                                    className={
-                                      classes.rightQuestionBottomScoreContents
-                                    }
-                                  >
-                                    <span>Final Score</span>
-                                    <TextField
-                                      id={data.categoryId + 'FinalScore'}
-                                      variant="outlined"
-                                      size="small"
-                                      value={data.finalScore}
-                                      InputProps={{
-                                        readOnly: true,
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              </TabPanel>
-                            );
-                          },
-                        )}
-                      </TabContext>
-                    ) : (
-                      <span>질문이 없습니다. 관리자에게 문의해주세요 </span>
+                                <span>Checked Score</span>
+                                <TextField
+                                  id={data.categoryId + 'CheckedScore'}
+                                  variant="outlined"
+                                  size="small"
+                                  value={data.checkedScore}
+                                  InputProps={{
+                                    readOnly: true,
+                                  }}
+                                />
+                              </div>
+                              <div
+                                className={
+                                  classes.rightQuestionBottomScoreContents
+                                }
+                              >
+                                <span>Tester Adjust</span>
+                                <TextField
+                                  id={data.categoryId + 'TesterAdjust'}
+                                  variant="outlined"
+                                  size="small"
+                                  value={data.testerAdjust}
+                                  name={data.categoryId}
+                                  onChange={handleTesterAdjustChange}
+                                />
+                              </div>
+                              <div
+                                className={
+                                  classes.rightQuestionBottomScoreContents
+                                }
+                              >
+                                <span>Final Score</span>
+                                <TextField
+                                  id={data.categoryId + 'FinalScore'}
+                                  variant="outlined"
+                                  size="small"
+                                  value={data.finalScore}
+                                  InputProps={{
+                                    readOnly: true,
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          </TabPanel>
+                        );
+                      },
                     )}
-                  </Paper>
-                </div>
-                <div className={classes.mainContainer}>
-                  <div className={classes.bottomContents}>
-                    <span className={classes.underLineText}>
-                      Psychological Status
-                    </span>
-                    <TextField
-                      id="outlined-multiline-static"
-                      //label="Multiline"
-                      fullWidth
-                      multiline
-                      rows={3}
-                      variant="outlined"
-                      inputProps={{
-                        style: { backgroundColor: '#FFF' },
-                      }}
-                      InputProps={{
-                        className: classes.bottomTextAreaContents,
-                      }}
-                      value={PsychologicalStatusText}
-                      onChange={(e) => {
-                        setPsychologicalStatusText(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div className={classes.bottomContents}>
-                    <span className={classes.underLineText}>Recommend</span>
-                    <TextField
-                      id="outlined-multiline-static2"
-                      //label="Multiline"
-                      fullWidth
-                      multiline
-                      rows={3}
-                      variant="outlined"
-                      inputProps={{
-                        style: { backgroundColor: '#FFF' },
-                      }}
-                      InputProps={{
-                        className: classes.bottomTextAreaContents,
-                      }}
-                      value={Recommend}
-                      onChange={(e) => {
-                        setRecommend(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-              </Container>
-            ) : null}
-          </main>
-        </div>
-      </TemplateProvider>
+                  </TabContext>
+                ) : (
+                  <span>질문이 없습니다. 관리자에게 문의해주세요 </span>
+                )}
+              </Paper>
+            </div>
+            <div className={classes.mainContainer}>
+              <div className={classes.bottomContents}>
+                <span className={classes.underLineText}>
+                  Psychological Status
+                </span>
+                <TextField
+                  id="outlined-multiline-static"
+                  //label="Multiline"
+                  fullWidth
+                  multiline
+                  rows={3}
+                  variant="outlined"
+                  inputProps={{
+                    style: { backgroundColor: '#FFF' },
+                  }}
+                  InputProps={{
+                    className: classes.bottomTextAreaContents,
+                  }}
+                  value={PsychologicalStatusText}
+                  onChange={(e) => {
+                    setPsychologicalStatusText(e.target.value);
+                  }}
+                />
+              </div>
+              <div className={classes.bottomContents}>
+                <span className={classes.underLineText}>Recommend</span>
+                <TextField
+                  id="outlined-multiline-static2"
+                  //label="Multiline"
+                  fullWidth
+                  multiline
+                  rows={3}
+                  variant="outlined"
+                  inputProps={{
+                    style: { backgroundColor: '#FFF' },
+                  }}
+                  InputProps={{
+                    className: classes.bottomTextAreaContents,
+                  }}
+                  value={Recommend}
+                  onChange={(e) => {
+                    setRecommend(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
+          </Container>
+        ) : null}
+      </main>
     </>
   );
 }

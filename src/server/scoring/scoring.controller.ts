@@ -14,13 +14,28 @@ import {
 import { Response } from 'express';
 import { AuthenticatedGuard } from '../auth/authenticated.guard';
 import { ScoringService } from './scoring.service';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiCreatedResponse,
+} from '@nestjs/swagger';
 
 @Controller('scoring')
+@ApiTags('admin scoring API')
 export class ScoringController {
   constructor(private readonly scoringService: ScoringService) {}
 
   @UseGuards(AuthenticatedGuard)
   @Get('/scoringInitdata')
+  @ApiOperation({
+    summary: 'scoring 초기 데이터 api',
+    description: '초기페이지에서 필요한 데이터를 로드',
+  })
+  @ApiCreatedResponse({
+    description: '해당 사용자의 기록을 object형태로 받아옴',
+    type: Object,
+  })
   async scoringInitData(@Query('date') date: number, @Req() req, @Res() res) {
     console.log('call scoring Initdata');
     console.log(req.user);

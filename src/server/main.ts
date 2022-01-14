@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 //import { join } from 'path';
+import { setupSwagger } from './lib/setupSwagger';
 
 import session = require('express-session');
 import flash = require('connect-flash');
@@ -13,6 +14,7 @@ import passport = require('passport');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  setupSwagger(app);
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

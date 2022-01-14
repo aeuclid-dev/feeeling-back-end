@@ -65,7 +65,7 @@ export class CommonService {
 
   async GetAlarm(user, object) {
     console.log('alarm - user');
-    console.log(user);
+    console.log(object);
     try {
       const alarm = await this.noticeRepository.find({
         relations: [

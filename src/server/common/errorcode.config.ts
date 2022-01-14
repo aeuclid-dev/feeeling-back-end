@@ -31,6 +31,9 @@ export const ErrorCodeToKorMsg = (code) => {
     case '202':
       resultMsg = '이미 네이버에 의해 서비스에 가입된 회원입니다.';
       break;
+    case '203':
+      resultMsg = '이미 사용중인 email입니다.';
+      break;
     case '210':
       resultMsg = '토큰이 필요합니다.';
       break;
