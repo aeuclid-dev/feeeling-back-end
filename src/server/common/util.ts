@@ -91,6 +91,7 @@ export const imageFinishWork = async (correct_image_id, type, typeData) => {
     {
       responseType: 'buffer',
       percentage: 40,
+      withMetaData: true,
     },
   );
 
